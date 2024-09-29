@@ -3,10 +3,13 @@ from modelos.cardapio.item_cardapio import ItemCardapio
 
 class Restaurante:
 
+    #Lista onde serão armazenados os restaurantes
     restaurantes = []
-  
+    
+    #__init__ Define um método contrutor
     def __init__(self, nome, categoria):
 
+        #O self._ é usado para privar os atributos
         self._nome = nome.title()
         self._categoria = categoria.upper()
         self._ativo = False
@@ -14,18 +17,21 @@ class Restaurante:
         self._cardapio = []
         
         Restaurante.restaurantes.append(self)
-  
+    
     def __str__(self):
         
         return f'{self._nome} | {self._categoria}'
     
+    #Este método indica que está função está diretamente ligada a classe
     @classmethod
+    #Lista os restaurentes que estão na lista e já os organiza através do .ljus()
     def listar_restaurantes(cls):
 
         print(f'{'Nome do Restaurante'.ljust(25)} | {'Categoria'.ljust(25)} | {'Status'.ljust(25)} | {'Avaliação'.ljust(25)}')
         for restaurante in cls.restaurantes:
             print(f'{restaurante._nome.ljust(25)} | {restaurante._categoria.ljust(25)} | {restaurante.ativo.ljust(25)} | {str(restaurante.media_notas).ljust(25)}')
 
+    #O método @property serve basicamente para definir que a função pode ser acessada com um atributo (getters/setters)
     @property
     def ativo(self):
         
